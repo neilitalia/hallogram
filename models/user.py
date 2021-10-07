@@ -35,10 +35,11 @@ class User(db.Model):
 
     @classmethod
     def find_all(cls):
-        users = User.query.all()
-        return [u.json() for u in users]
+        # users = User.query.all()
+        # return [u.json() for u in users]
+        return User.query.all()
 
     @classmethod
-    def find_by_id(cls, town_id):
-        user = User.query.filter_by(id=town_id).first()
+    def find_by_id(cls, user_id):
+        user = User.query.filter_by(id=user_id).first()
         return user
