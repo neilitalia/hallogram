@@ -13,14 +13,15 @@ class Post(db.Model):
         datetime.utcnow()), nullable=False)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow(
     ), nullable=False, onupdate=datetime.now())
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     user = db.relationship("User", cascade='all',
-                           backref=db.backref('users', lazy=True))
+                        backref=db.backref('users', lazy=True))
 
-    def __init__(self, content, costume, claps):
+    def __init__(self, content, costume, claps, user_id):
         self.content = content
         self.costume = costume
         self.claps = claps
+        self.user_id = user_id
 
     def json(self):
         return {
@@ -43,6 +44,6 @@ class Post(db.Model):
         return [p.json() for p in posts]
 
     @classmethod
-    def find_by_id(cls, town_id):
-        post = Post.query.filter_by(id=town_id).first()
+    def find_by_id(cls, post_id):
+        post = Post.query.filter_by(id=post_id).first()
         return post
