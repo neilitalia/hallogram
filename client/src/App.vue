@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <header></header>
+    <header><Feed/></header>
     <main>
       <router-view></router-view>
     </main>
@@ -9,10 +9,12 @@
 
 <script>
 
-
+import Feed from "./pages/Feed.vue"
 export default {
   name: 'App',
-  components: {}
+  components: {
+    Feed
+  }
 }
 </script>
 
