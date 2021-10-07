@@ -5,8 +5,8 @@ export const GetPosts = async () => {
   return res.data
 }
 
-export const CreatePost = async () => {
-  const res = await Client.get('/posts')
+export const CreatePost = async (data) => {
+  const res = await Client.post('/posts', data)
   return res
 }
 
