@@ -3,6 +3,7 @@ from flask_restful import Resource
 from models.user import User
 from models.db import db
 from sqlalchemy.orm import joinedload
+from sqlalchemy import select
 
 
 class Users(Resource):
@@ -29,13 +30,14 @@ class UserDetail(Resource):
     def get(self, user_id):
         user = User.query.options(joinedload(
             'posts')).filter_by(id=user_id).first()
-        print(user.posts)
         posts = [p.json() for p in user.posts]
         return {**user.json(), 'posts': posts}
 
 
 class UserVerification(Resource):
-    def get(self, user_name, user_email):
-        user = db.session.select(User).where(
-            User.name == user_name, User.email == user_email)
+    def post(self):
+        data = request.get_json()
+        user = User.find_by_email(data['user_email'])
+        if not user:
+            return {"msg": "user not found"}, 404
         return user.json()

@@ -1,6 +1,6 @@
 <template>
   <div class="feed">
-    <NewPost />
+    <NewPost :posts="posts" @addPost="addPost" />
     <h3>Feed</h3>
     <div v-for="post in posts" :key="post.id">
       <Post :post="post" />
@@ -11,13 +11,13 @@
 <script>
 import Post from "../components/Post.vue";
 import { GetPosts } from "../services/PostServices";
-import NewPost from '../components/NewPost.vue'
+import NewPost from "../components/NewPost.vue";
 
 export default {
   name: "Feed",
   components: {
     Post,
-    NewPost
+    NewPost,
   },
   data: () => ({
     posts: [],
@@ -27,8 +27,11 @@ export default {
   },
   methods: {
     async getPosts() {
-      this.posts = await GetPosts();
-      console.log(this.posts);
+      const res = await GetPosts();
+      this.posts = res.reverse();
+    },
+    addPost(post) {
+      this.posts.unshift(post);
     },
   },
 };

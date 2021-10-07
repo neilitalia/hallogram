@@ -41,8 +41,6 @@ class PostActions(Resource):
         post = Post.find_by_id(post_id)
         if not post:
             return {"msg": "Not found"}, 404
-        # post.update({'claps': post.claps + 1})
-        # setattr(post, claps, cl)
         post.claps += 1
         db.session.commit()
         return post.json()

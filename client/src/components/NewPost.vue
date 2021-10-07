@@ -1,8 +1,8 @@
 <template>
   <div>
     <h1>Create a new post</h1>
-    <form action="">
-      <input type="text" placeholder="costume" />
+    <form v-on:submit.prevent="sendPost">
+      <input v-model="costume" type="text" placeholder="costume" />
       <textarea
         v-model="content"
         name="content"
@@ -18,15 +18,16 @@
 </template>
 
 <script>
+import { CreatePost } from "../services/PostServices";
 export default {
   name: "NewPost",
   data: () => ({
     content: "",
     costume: null,
-    user_id: 0,
+    user_id: 1,
   }),
   methods: {
-    sendPost() {
+    async sendPost() {
       if (this.content && this.costume && this.user_id) {
         const payload = {
           content: this.content,
@@ -34,8 +35,11 @@ export default {
           claps: 0,
           user_id: this.user_id,
         };
-        console.log(`payload :>>`, payload);
-        // TODO: Add new post service here
+        const res = await CreatePost(payload);
+        if (res.status === 201) {
+          console.log("res :>> ", res.data);
+          this.$emit("addPost", res.data);
+        }
       }
     },
   },

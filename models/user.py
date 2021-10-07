@@ -8,6 +8,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
+    tip_jar = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, default=str(
         datetime.utcnow()), nullable=False)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow(
@@ -15,15 +16,17 @@ class User(db.Model):
     posts = db.relationship("Post", cascade='all',
                             backref=db.backref('posts', lazy=True))
 
-    def __init__(self, name, email):
+    def __init__(self, name, email, tip_jar):
         self.name = name
         self.email = email
+        self.tip_jar = tip_jar
 
     def json(self):
         return {
             "id": self.id,
             "name": self.name,
             "email": self.email,
+            "tip_jar": self.tip_jar,
             "created_at": str(self.created_at),
             "updated_at": str(self.updated_at)
         }
@@ -35,11 +38,14 @@ class User(db.Model):
 
     @classmethod
     def find_all(cls):
-        # users = User.query.all()
-        # return [u.json() for u in users]
         return User.query.all()
 
     @classmethod
     def find_by_id(cls, user_id):
         user = User.query.filter_by(id=user_id).first()
+        return user
+
+    @classmethod
+    def find_by_email(cls, user_id):
+        user = User.query.filter_by(email=user_id).first()
         return user
