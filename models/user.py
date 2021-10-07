@@ -8,6 +8,10 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
+    created_at = db.Column(db.DateTime, default=str(
+        datetime.utcnow()), nullable=False)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow(
+    ), nullable=False, onupdate=datetime.now())
     posts = db.relationship("Post", cascade='all',
                             backref=db.backref('posts', lazy=True))
 

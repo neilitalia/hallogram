@@ -9,6 +9,10 @@ class Post(db.Model):
     content = db.Column(db.String(255), nullable=False)
     costume = db.Column(db.String(255), nullable=False)
     claps = db.Column(db.Integer, nullable=False)
+    created_at = db.Column(db.DateTime, default=str(
+        datetime.utcnow()), nullable=False)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow(
+    ), nullable=False, onupdate=datetime.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     user = db.relationship("User", cascade='all',
                            backref=db.backref('users', lazy=True))
