@@ -18,9 +18,12 @@ migrate = Migrate(app, db)
 
 api.add_resource(user.Users, '/users')
 api.add_resource(user.UserDetail, '/users/<int:user_id>')
+api.add_resource(user.UserVerification,
+                 '/users/name/<string:user_name>/email/<string:user_email>')
 
 api.add_resource(post.Posts, '/posts')
 api.add_resource(post.PostDetail, '/posts/<int:post_id>')
+api.add_resource(post.PostActions, '/posts/clap/<int:post_id>')
 
 if __name__ == '__main__':
     app.run(debug=True)
