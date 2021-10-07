@@ -23,6 +23,7 @@ api.add_resource(user.UserVerification,
 
 api.add_resource(post.Posts, '/posts')
 api.add_resource(post.PostDetail, '/posts/<int:post_id>')
+api.add_resource(post.PostActions, '/posts/clap/<int:post_id>')
 
 if __name__ == '__main__':
     app.run(debug=True)
