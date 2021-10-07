@@ -1,8 +1,8 @@
 <template>
   <div class="profile"> 
   <div class="profile-details">
-  <h3>{{name}}</h3>
-  <h4>{{email}}</h4>
+  <h3>{{user.name}}</h3>
+  <h4>{{user.email}}</h4>
   <!-- <h4>{{user.tipJar}}</h4> -->
   </div>
   <div class="post-container">
@@ -24,19 +24,25 @@ export default {
     Post
     },
   data: () => ({
-    name: "",
-    email: "",
+    // name: "",
+    // email: "",
     posts : [],
     // tipJar : ""
     user: {}
   }),
+  mounted: function(){
+    this.getUser()
+  },
   methods: {
     async getUser() {
-      this.user = await GetUser()
-      this.user.name = this.name
-      this.user.email = this.email
-      this.user.posts = this.posts
+      const response = await GetUser(3)
+      console.log(response)
+      this.user = response
+      // this.user.name = this.name
+      // this.user.email = this.email
+      this.posts = this.user.posts
     }
+
   }
 
 }
