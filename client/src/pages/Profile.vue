@@ -45,6 +45,8 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+
   .profile-details {
     color: white;
     text-align: center;
@@ -55,6 +57,7 @@ export default {
     text-align: center;
     margin: 4rem;
     font-size: 3vh;
+    font-family: 'Creepster', cursive;
   }
 
 </style>

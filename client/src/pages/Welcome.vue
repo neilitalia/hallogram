@@ -68,6 +68,8 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+
   .auth-input {
     display: block;
     margin: auto;
@@ -80,6 +82,7 @@ export default {
     color: #ff9a00;
     text-align: center;
     margin: 5ch;
+    font-family: 'Creepster', cursive;
   }
   .auth-button {
     display: flex;
@@ -95,6 +98,8 @@ export default {
     font-weight:400;
     color: white;
     text-align:center;
+    font-family: 'Creepster', cursive;
+    font-size: 1.25rem;
   }
   .button:hover{
     color: #85e21f;
