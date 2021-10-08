@@ -42,6 +42,8 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+
   body {
     background-color: rgb(0,0,0);
   }
@@ -49,6 +51,7 @@ export default {
     color: #ff9a00;
     text-align: center;
     font-size: 3vh;
+    font-family: 'Creepster', cursive;
   }
   .new-post {
     height: 8%;
