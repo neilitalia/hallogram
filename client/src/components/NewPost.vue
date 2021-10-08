@@ -1,41 +1,47 @@
 <template>
-  <div>
+  <div class="NewPost">
     <h1>Create a new post</h1>
-    <form v-on:submit.prevent="sendPost">
-      <input type="text" placeholder="costume image" accept="image/*" />
+    <img
+      v-if="uploadPreview"
+      :src="uploadPreview"
+      alt="Preview"
+      class="upload-preview"
+    />
+    <div class="file-upload">
       <input
         type="file"
         placeholder="costume image"
+        accept="image/*"
         @change="handleFileChange"
       />
       <button @click="handleFileSend">Upload File</button>
-      <textarea
-        v-model="content"
-        name="content"
-        cols="30"
-        rows="10"
-        placeholder="content"
-        maxlength="256"
-      />
-      <p>{{ 256 - content.length }}/256</p>
-      <button type="submit">Submit</button>
-    </form>
+    </div>
+    <textarea
+      v-model="content"
+      name="content"
+      cols="30"
+      rows="10"
+      placeholder="content"
+      maxlength="256"
+    />
+    <p>{{ 256 - content.length }}/256</p>
+    <button @click="sendPost" :disabled="!content || !costume">Submit</button>
   </div>
 </template>
 
 <script>
-import { CreatePost } from "../services/PostServices";
+import { CreatePost, UploadImage } from "../services/PostServices";
 export default {
   name: "NewPost",
   data: () => ({
     content: "",
     costume: null,
     costumeImage: null,
-    user_id: 1,
+    uploadPreview: null,
   }),
   methods: {
     async sendPost() {
-      if (this.content && this.costume && this.user_id) {
+      if (this.content && this.costume && this.costume) {
         const payload = {
           content: this.content,
           costume: this.costume,
@@ -50,19 +56,37 @@ export default {
       }
     },
     handleFileChange(e) {
-      this.costumeImage = e.target.files[0];
+      const file = e.target.files;
+      if (file && file[0]) {
+        console.log("file :>> ", file);
+        this.costumeImage = file[0];
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          this.uploadPreview = e.target.result;
+        };
+        reader.readAsDataURL(file[0]);
+      }
     },
-    handleFileSend() {},
+    async handleFileSend() {
+      const formData = new FormData();
+      formData.append("file", this.costumeImage);
+      const res = await UploadImage(formData);
+      if (res.status === 200) {
+        this.costume = this.costumeImage.name;
+      }
+    },
   },
 };
 </script>
 
 <style scoped>
-h1 {
-  text-align: center;
-}
-form {
+div.NewPost {
   display: flex;
   flex-direction: column;
+}
+div.file-upload {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 </style>
