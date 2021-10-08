@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     async getUser() {
-      const response = await GetUser(3)
+      const response = await GetUser(1)
       console.log(response)
       this.user = response
       // this.user.name = this.name
