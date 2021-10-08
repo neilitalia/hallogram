@@ -9,15 +9,15 @@
 </template>
 
 <script>
-// import {DeletePost} from '../services/PostServices'
+import { DeletePost } from "../services/PostServices";
 
 export default {
   name: "Post",
-  props: ["post"]
-//   methods: {
-//     async deletePost(id) {
-//       await DeletePost(id)
-//     }
-//   } 
-}
+  props: ["post"],
+  methods: {
+    async deletePost(id) {
+      await DeletePost(id);
+    },
+  },
+};
 </script>

@@ -33,7 +33,7 @@ export default {
           content: this.content,
           costume: this.costume,
           claps: 0,
-          user_id: this.user_id,
+          user_id: localStorage.getItem("user_id"),
         };
         const res = await CreatePost(payload);
         if (res.status === 201) {

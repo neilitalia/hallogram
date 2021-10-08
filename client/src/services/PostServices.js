@@ -10,7 +10,7 @@ export const CreatePost = async data => {
   return res
 }
 
-// export const DeletePost = async post_id => {
-//   const res = await Client.delete(`/posts/${post_id}`)
-//   return res
-// }
+export const DeletePost = async post_id => {
+  const res = await Client.delete(`/posts/${post_id}`)
+  return res
+}
