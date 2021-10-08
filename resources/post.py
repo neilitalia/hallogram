@@ -30,7 +30,7 @@ class PostDetail(Resource):
     def delete(self, post_id):
         post = Post.find_by_id(post_id)
         if not post:
-            return {"msg": "Not found"}, 404
+            return {"msg": "Not found"}
         db.session.delete(post)
         db.session.commit()
         return {"msg": "Post Deleted", "payload": post_id}
@@ -40,7 +40,7 @@ class PostActions(Resource):
     def put(self, post_id):
         post = Post.find_by_id(post_id)
         if not post:
-            return {"msg": "Not found"}, 404
+            return {"msg": "Not found"}
         post.claps += 1
         db.session.commit()
         return post.json()

@@ -2,8 +2,9 @@
   <div class="post">
     <img :src="imageBaseUrl + postDetails.costume" alt="" />
     <div class="content">
-    <h4>{{ postDetails.content }}</h4>
-    <h2>{{ postDetails.claps }}</h2>
+      <h2>{{ postDetails.content }}</h2>
+      <h4>{{ postDetails.claps }} claps</h4>
+      <h4 v-if="postDetails.user.name">by {{ postDetails.user.name }}</h4>
     </div>
     <button class="delete" @click="deletePost">Delete</button>
     <button class="clap" @click="clapPost">clap</button>
@@ -40,15 +41,15 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Creepster&display=swap");
 .post {
-  display:flex;
+  display: flex;
   flex-direction: column;
-  border-radius:8px;
-  cursor:pointer;
+  border-radius: 8px;
+  cursor: pointer;
   background-color: #efbd76;
   transition: all 0.2s ease;
-  margin-bottom:10px;
+  margin-bottom: 10px;
 }
 .delete:hover {
   opacity: 0.7;
@@ -58,16 +59,18 @@ export default {
 }
 .content {
   background-color: white;
-  margin:1em;
+  margin: 1em;
 }
 
-h4,h2 {
+h4,
+h2 {
   text-align: center;
 }
-.delete, .clap {
-  background-color:#F75F1C;
+.delete,
+.clap {
+  background-color: #f75f1c;
   color: black;
-  font-family: 'Creepster', cursive;
+  font-family: "Creepster", cursive;
   width: 20%;
   margin: auto;
   margin-bottom: 5px;
@@ -77,7 +80,6 @@ img {
   max-width: 50%;
   max-height: 500px;
   margin: 0 auto;
-  padding:1em;
-  
+  padding: 1em;
 }
 </style>

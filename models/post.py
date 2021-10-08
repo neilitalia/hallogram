@@ -15,8 +15,7 @@ class Post(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow(
     ), nullable=False, onupdate=datetime.now())
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    user = db.relationship("User", cascade='all',
-                           backref=db.backref('users', lazy=True))
+    user = db.relationship("User", backref=db.backref('users', lazy=True))
 
     def __init__(self, content, costume, claps, user_id):
         self.content = content

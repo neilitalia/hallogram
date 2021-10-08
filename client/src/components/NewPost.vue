@@ -25,7 +25,9 @@
       maxlength="256"
     />
     <p>{{ 256 - content.length }}/256</p>
-    <button class="submit" @click="sendPost" :disabled="!content || !costume">Submit</button>
+    <button class="submit" @click="sendPost" :disabled="!content || !costume">
+      Submit
+    </button>
   </div>
 </template>
 
@@ -50,8 +52,11 @@ export default {
         };
         const res = await CreatePost(payload);
         if (res.status === 201) {
-          console.log("res :>> ", res.data);
           this.$emit("addPost", res.data);
+          this.content = "";
+          this.costume = null;
+          this.costumeImage = null;
+          this.uploadPreview = null;
         }
       }
     },
@@ -80,7 +85,7 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Creepster&display=swap");
 
 div.NewPost {
   display: flex;
@@ -91,19 +96,19 @@ div.file-upload {
   flex-direction: row;
   justify-content: space-between;
 }
-.submit, .upload {
- background-color:#F75F1C;
- color: black;
- font-family: 'Creepster', cursive;
+.submit,
+.upload {
+  background-color: #f75f1c;
+  color: black;
+  font-family: "Creepster", cursive;
 }
 
-.NewPost{
+.NewPost {
   background-image: url("https://cdn.pixabay.com/photo/2019/07/15/07/01/halloween-background-4338710__480.jpg");
   background-repeat: no-repeat;
   background-size: 100%;
-  font-family: 'Creepster', cursive;
+  font-family: "Creepster", cursive;
   text-align: center;
-  color: #FF9A00;
-
+  color: #ff9a00;
 }
 </style>
