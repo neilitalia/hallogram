@@ -3,11 +3,12 @@
   <div class="profile-details">
   <h3>{{user.name}}</h3>
   <h4>{{user.email}}</h4>
+  <h3>{{user.tip_jar}}</h3>
   <!-- <h4>{{user.tipJar}}</h4> -->
   </div>
   <div class="post-container">
     <div v-for="post in posts" :key="post.id">
-    <Post :post="post"/>
+    <Post :post="post" />
     </div>
   </div>
   </div>
@@ -22,12 +23,9 @@ export default {
   name: "Profile",
   component: {
     Post
-    },
+  },
   data: () => ({
-    // name: "",
-    // email: "",
     posts : [],
-    // tipJar : ""
     user: {}
   }),
   mounted: function(){
@@ -38,8 +36,6 @@ export default {
       const response = await GetUser(1)
       console.log(response)
       this.user = response
-      // this.user.name = this.name
-      // this.user.email = this.email
       this.posts = this.user.posts
     }
 
