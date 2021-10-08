@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header>
-      <Nav />
+      <Nav @signOut="signOut" />
     </header>
     <main>
       <router-view></router-view>
@@ -10,13 +10,19 @@
 </template>
 
 <script>
-import Nav from './components/Nav.vue'
+import Nav from "./components/Nav.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Nav
-  }
-}
+    Nav,
+  },
+  methods: {
+    signOut() {
+      localStorage.clear();
+      this.$router.push("/welcome");
+    },
+  },
+};
 </script>
 

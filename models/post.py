@@ -1,5 +1,6 @@
 from datetime import datetime
 from models.db import db
+from sqlalchemy.orm import joinedload
 
 
 class Post(db.Model):
@@ -15,7 +16,7 @@ class Post(db.Model):
     ), nullable=False, onupdate=datetime.now())
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     user = db.relationship("User", cascade='all',
-                        backref=db.backref('users', lazy=True))
+                           backref=db.backref('users', lazy=True))
 
     def __init__(self, content, costume, claps, user_id):
         self.content = content
@@ -40,8 +41,12 @@ class Post(db.Model):
 
     @classmethod
     def find_all(cls):
-        posts = Post.query.all()
-        return [p.json() for p in posts]
+        query = Post.query.options(joinedload(
+            'user')).all()
+        response = []
+        for item in query:
+            response.append({**item.json(), "user": item.user.json()})
+        return response
 
     @classmethod
     def find_by_id(cls, post_id):
