@@ -8,42 +8,35 @@
   </div>
   <div class="post-container">
     <div v-for="post in posts" :key="post.id">
-    <Post :post="post" />
+      <Post :post="post" />
     </div>
   </div>
-  </div>
-  
 </template>
 
 <script>
-import Post from "../components/Post.vue"
-import {GetUser} from '../services/UserServices'
+import Post from "../components/Post.vue";
+import { GetUser } from "../services/UserServices";
 
 export default {
   name: "Profile",
-  component: {
-    Post
+  components: {
+    Post,
   },
   data: () => ({
-    posts : [],
-    user: {}
+    user: {},
   }),
-  mounted: function(){
-    this.getUser()
+  mounted: function () {
+    this.getUser();
   },
   methods: {
     async getUser() {
-      const response = await GetUser(1)
-      console.log(response)
-      this.user = response
-      this.posts = this.user.posts
-    }
-
-  }
-
-}
+      const response = await GetUser(1);
+      console.log(response);
+      this.user = response;
+    },
+  },
+};
 </script>
 
 <style>
-
 </style>

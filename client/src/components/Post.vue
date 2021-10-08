@@ -4,6 +4,7 @@
     <h4>{{ post.content }}</h4>
     <h2>{{ post.claps }}</h2>
     <button @click="deletePost(post.id)">Delete</button>
+    <button>clap</button>
   </div>
 </template>
 
