@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="welcome">
     <h1 class="auth-title">Hallogram is the place to go trick-or-treating online</h1>
     <form v-on:submit.prevent="createUser">
       <input class="auth-input" v-model="name" type="text" placeholder="name" />
@@ -11,8 +11,10 @@
     </form>
     <h2>Already a user?</h2>
     <p>Enter your email:</p>
-    <input type="email" v-model="verifyEmail" />
-    <button @click="getUser" :disabled="!this.verifyEmail">Verify</button>
+    <input class="auth-input" type="email" v-model="verifyEmail" />
+    <div class="verify-button">
+    <button class="button" @click="getUser" :disabled="!this.verifyEmail">Verify</button>
+    </div>
     <p v-if="!found">User not found :(</p>
   </div>
 </template>
@@ -101,7 +103,14 @@ export default {
     font-family: 'Creepster', cursive;
     font-size: 1.25rem;
   }
+  .verify-button {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
   .button:hover{
     color: #85e21f;
   }
+
 </style>
