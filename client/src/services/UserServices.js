@@ -12,7 +12,7 @@ export const GetAllUsers = async () => {
 
 export const CreateUser = async data => {
   const res = await Client.post('/users', data)
-  return res.data
+  return res
 }
 
 export const DeleteUser = async user_id => {

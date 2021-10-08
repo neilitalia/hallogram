@@ -1,14 +1,15 @@
 <template>
-  <div class="profile"> 
-  <div class="profile-details">
-  <h3>{{user.name}}</h3>
-  <h4>{{user.email}}</h4>
-  <h3>{{user.tip_jar}}</h3>
-  <!-- <h4>{{user.tipJar}}</h4> -->
-  </div>
-  <div class="post-container">
-    <div v-for="post in posts" :key="post.id">
-      <Post :post="post" />
+  <div class="profile">
+    <div class="profile-details">
+      <h3>{{ user.name }}</h3>
+      <h4>{{ user.email }}</h4>
+      <h3>{{ user.tip_jar }}</h3>
+      <!-- <h4>{{user.tipJar}}</h4> -->
+    </div>
+    <div class="post-container">
+      <div v-for="post in user.posts" :key="post.id">
+        <Post :post="post" />
+      </div>
     </div>
   </div>
 </template>
@@ -30,7 +31,7 @@ export default {
   },
   methods: {
     async getUser() {
-      const response = await GetUser(1);
+      const response = await GetUser(localStorage.getItem("user_id"));
       console.log(response);
       this.user = response;
     },

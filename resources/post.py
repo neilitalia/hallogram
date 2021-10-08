@@ -1,9 +1,9 @@
 from models.db import db
 from models.post import Post
-from models.user import User
 from flask_restful import Resource
 from flask import request
 from sqlalchemy.orm import joinedload
+from resources.s3 import *
 
 
 class Posts(Resource):
@@ -44,3 +44,10 @@ class PostActions(Resource):
         post.claps += 1
         db.session.commit()
         return post.json()
+
+
+class PostImage(Resource):
+    def post(self):
+        file = request.files['file']
+        bucket.Object(file.filename).put(Body=file)
+        return "uploaded"
