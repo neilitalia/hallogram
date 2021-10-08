@@ -22,7 +22,7 @@ class UserDetail(Resource):
     def delete(self, user_id):
         user = User.find_by_id(user_id)
         if not user:
-            return {"msg": "user not found"}, 404
+            return {"msg": "user not found"}
         db.session.delete(user)
         db.session.commit()
         return {"msg": "User Deleted", "payload": user_id}
@@ -39,5 +39,5 @@ class UserVerification(Resource):
         data = request.get_json()
         user = User.find_by_email(data['user_email'])
         if not user:
-            return {"msg": "user not found"}, 404
+            return {"msg": "user not found", "payload": data['user_email']}
         return user.json()

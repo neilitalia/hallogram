@@ -4,7 +4,7 @@
       <Nav @signOut="signOut" />
     </header>
     <main>
-      <router-view></router-view>
+      <router-view @checkRegistration="checkRegistration" />
     </main>
   </div>
 </template>
@@ -17,10 +17,19 @@ export default {
   components: {
     Nav,
   },
+  mounted: function () {
+    this.checkRegistration();
+  },
   methods: {
     signOut() {
       localStorage.clear();
       this.$router.push("/welcome");
+    },
+    checkRegistration() {
+      const authenticated = localStorage.getItem("authenticated");
+      if (!authenticated) {
+        this.$router.push("/welcome");
+      }
     },
   },
 };

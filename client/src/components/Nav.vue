@@ -1,8 +1,10 @@
 <template>
   <nav>
-    <router-link to="/">Feed</router-link>
-    <router-link to="/profile">{{ name }}'s Profile</router-link>
-    <button @click="signOut">Sign Out</button>
+    <router-link to="/">Home</router-link>
+    <router-link to="/profile" v-if="authenticated"
+      >{{ name }}'s Profile</router-link
+    >
+    <button v-if="authenticated" @click="signOut">Sign Out</button>
   </nav>
 </template>
 
@@ -10,13 +12,20 @@
 export default {
   name: "Nav",
   data: () => ({
+    authenticated: false,
     name: "",
   }),
   mounted: function () {
-    this.name = localStorage.getItem("name");
+    const authenticated = localStorage.getItem("authenticated");
+    if (authenticated) {
+      this.name = localStorage.getItem("name");
+      this.authenticated = true;
+    }
   },
   methods: {
     signOut() {
+      this.authenticated = false;
+      this.name = "";
       this.$emit("signOut");
     },
   },

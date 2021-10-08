@@ -18,7 +18,8 @@ migrate = Migrate(app, db)
 
 api.add_resource(user.Users, '/api/users')
 api.add_resource(user.UserDetail, '/api/users/<int:user_id>')
-api.add_resource(user.UserVerification, '/api/users/verify')
+api.add_resource(user.UserVerification,
+                 '/api/users/verify')
 
 api.add_resource(post.Posts, '/api/posts')
 api.add_resource(post.PostDetail, '/api/posts/<int:post_id>')

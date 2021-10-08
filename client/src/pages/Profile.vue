@@ -28,13 +28,17 @@ export default {
     user: {},
   }),
   mounted: function () {
+    this.$emit("checkRegistration");
     this.getUser();
   },
   methods: {
     async getUser() {
-      const response = await GetUser(localStorage.getItem("user_id"));
-      console.log(response);
-      this.user = response;
+      const userId = localStorage.getItem("user_id");
+      if (userId) {
+        const response = await GetUser(userId);
+        console.log(response);
+        this.user = response;
+      }
     },
   },
 };
