@@ -9,7 +9,7 @@
     <h3 class="profile-title">Posts</h3>
     <div class="post-container">
       <div v-for="post in user.posts" :key="post.id">
-        <Post :post="post" />
+        <Post :post="post" :author="user.name" />
       </div>
     </div>
   </div>
@@ -45,19 +45,18 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Creepster&display=swap");
 
-  .profile-details {
-    color: white;
-    text-align: center;
-    font-size: 2vh;
-  }
-  .profile-title {
-    color: #ff9a00;
-    text-align: center;
-    margin: 4rem;
-    font-size: 3vh;
-    font-family: 'Creepster', cursive;
-  }
-
+.profile-details {
+  color: white;
+  text-align: center;
+  font-size: 2vh;
+}
+.profile-title {
+  color: #ff9a00;
+  text-align: center;
+  margin: 4rem;
+  font-size: 3vh;
+  font-family: "Creepster", cursive;
+}
 </style>
