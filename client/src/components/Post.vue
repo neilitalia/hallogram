@@ -3,6 +3,7 @@
     <img :src="post.costume" alt="" />
     <h4>{{ post.content }}</h4>
     <h2>{{ post.claps }}</h2>
+    <button>clap</button>
   </div>
 </template>
 
