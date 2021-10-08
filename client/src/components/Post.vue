@@ -1,8 +1,10 @@
 <template>
   <div class="post">
     <img :src="imageBaseUrl + postDetails.costume" alt="" />
+    <div class="content">
     <h4>{{ postDetails.content }}</h4>
     <h2>{{ postDetails.claps }}</h2>
+    </div>
     <button class="delete" @click="deletePost">Delete</button>
     <button class="clap" @click="clapPost">clap</button>
   </div>
@@ -40,19 +42,42 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
 .post {
-  border-radius:5px;
+  display:flex;
+  flex-direction: column;
+  border-radius:8px;
   cursor:pointer;
+  background-color: #efbd76;
+  transition: all 0.2s ease;
+  margin-bottom:10px;
 }
-.post:hover {
+.delete:hover {
   opacity: 0.7;
+}
+.clap:hover {
+  opacity: 0.7;
+}
+.content {
+  background-color: white;
+  margin:1em;
+}
+
+h4,h2 {
+  text-align: center;
 }
 .delete, .clap {
   background-color:#F75F1C;
   color: black;
   font-family: 'Creepster', cursive;
+  width: 20%;
+  margin: auto;
+  margin-bottom: 5px;
 }
 
 img {
   max-width: 50%;
+  max-height: 500px;
+  margin: 0 auto;
+  padding:1em;
+  
 }
 </style>
