@@ -1,11 +1,12 @@
 <template>
   <div class="profile">
+    <h3 class="profile-title">Profile</h3>
     <div class="profile-details">
-      <h3>{{ user.name }}</h3>
-      <h4>{{ user.email }}</h4>
-      <h3>{{ user.tip_jar }}</h3>
-      <!-- <h4>{{user.tipJar}}</h4> -->
+      <h4>User Name: {{ user.name }}</h4>
+      <h4>Email: {{ user.email }}</h4>
+      <h4>Tip Jar: {{ user.tip_jar }}</h4>
     </div>
+    <h3 class="profile-title">Posts</h3>
     <div class="post-container">
       <div v-for="post in user.posts" :key="post.id">
         <Post :post="post" />
@@ -40,4 +41,16 @@ export default {
 </script>
 
 <style>
+  .profile-details {
+    color: white;
+    text-align: center;
+    font-size: 2vh;
+  }
+  .profile-title {
+    color: #ff9a00;
+    text-align: center;
+    margin: 4rem;
+    font-size: 3vh;
+  }
+
 </style>
