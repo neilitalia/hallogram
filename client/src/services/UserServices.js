@@ -19,3 +19,8 @@ export const DeleteUser = async user_id => {
   const res = await Client.delete(`/users/${user_id}`)
   return res.data
 }
+
+export const VerifyUser = async data => {
+  const res = await Client.post('/users/verify', data)
+  return res
+}

@@ -23,6 +23,7 @@ export default {
     posts: [],
   }),
   mounted: function () {
+    this.$emit("checkRegistration");
     this.getPosts();
   },
   methods: {

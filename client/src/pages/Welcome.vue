@@ -7,17 +7,24 @@
       <input v-model="tip_jar" type="text" placeholder="tip jar" />
       <button type="submit">Submit</button>
     </form>
+    <h2>Already a user?</h2>
+    <p>Enter your email:</p>
+    <input type="email" v-model="verifyEmail" />
+    <button @click="getUser" :disabled="!this.verifyEmail">Verify</button>
+    <p v-if="!found">User not found :(</p>
   </div>
 </template>
 
 <script>
-import { CreateUser } from "../services/UserServices";
+import { CreateUser, VerifyUser } from "../services/UserServices";
 export default {
   name: "Welcome",
   data: () => ({
     name: "",
     email: "",
     tip_jar: null,
+    verifyEmail: "",
+    found: true,
   }),
   methods: {
     async createUser() {
@@ -29,14 +36,30 @@ export default {
         };
         const res = await CreateUser(payload);
         if (res.status === 201) {
-          localStorage.setItem("name", res.data.name);
-          localStorage.setItem("email", res.data.email);
-          localStorage.setItem("tip_jar", res.data.tip_jar);
-          localStorage.setItem("user_id", res.data.id);
-          localStorage.setItem("authenticated", true);
-          this.$router.push("/");
+          this.storeUserData(res.data);
         }
       }
+    },
+    async getUser() {
+      if (this.verifyEmail) {
+        const payload = {
+          user_email: this.verifyEmail,
+        };
+        const res = await VerifyUser(payload);
+        if (res.data.msg === "user not found") {
+          this.found = false;
+        } else {
+          this.storeUserData(res.data);
+        }
+      }
+    },
+    storeUserData(data) {
+      localStorage.setItem("name", data.name);
+      localStorage.setItem("email", data.email);
+      localStorage.setItem("tip_jar", data.tip_jar);
+      localStorage.setItem("user_id", data.id);
+      localStorage.setItem("authenticated", true);
+      this.$router.push("/");
     },
   },
 };
