@@ -4,7 +4,7 @@
     <div class="content">
       <h2>{{ postDetails.content }}</h2>
       <h4>{{ postDetails.claps }} claps</h4>
-      <!-- <h4 v-if="postDetails.user.name">by {{ postDetails.user.name }}</h4> -->
+      <h4>by {{ postUser }}</h4>
     </div>
     <button class="delete" @click="deletePost">Delete</button>
     <button class="clap" @click="clapPost">clap</button>
@@ -17,10 +17,11 @@ import { S3_BASE_URL } from "../globals";
 
 export default {
   name: "Post",
-  props: ["post"],
+  props: ["post", "author"],
   data: () => ({
     imageBaseUrl: S3_BASE_URL,
     postDetails: {},
+    postUser: "",
   }),
   methods: {
     async deletePost() {
@@ -36,6 +37,7 @@ export default {
   },
   mounted() {
     this.postDetails = { ...this.post };
+    this.postUser = this.author;
   },
 };
 </script>

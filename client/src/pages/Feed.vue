@@ -5,9 +5,9 @@
     </div>
     <h3 class="feed-title">Feed</h3>
     <div class="post-container">
-    <div v-for="post in posts" :key="post.id">
-      <Post :post="post" />
-    </div>
+      <div v-for="post in posts" :key="post.id">
+        <Post :post="post" :author="post.user.name" />
+      </div>
     </div>
   </div>
 </template>
@@ -43,37 +43,37 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Creepster&display=swap");
 
-  body {
-    background-color: rgb(0,0,0);
-  }
-  .feed-title {
-    color: #ff9a00;
-    text-align: center;
-    font-size: 3vh;
-    font-family: 'Creepster', cursive;
-  }
-  .new-post {
-    height: 8%;
-    width: 60%;
-    margin: auto;
-    margin-top: 5vh;
-    border: 5px solid #881ee4;
-    padding: 4rem;
-    padding-left: 10rem;
-    padding-right: 10rem;
-    border-radius: 8px;
-  }
-  .post-container {
-    width: 60%;
-    margin: auto;
-    margin-top: 3vh;
-    margin-bottom: 100vh;
-    border: 3px solid #85e21f;
-    border-radius: 8px;
-    padding: 5rem;
-    padding-left: 10rem;
-    padding-right: 10rem;
-  }
+body {
+  background-color: rgb(0, 0, 0);
+}
+.feed-title {
+  color: #ff9a00;
+  text-align: center;
+  font-size: 3vh;
+  font-family: "Creepster", cursive;
+}
+.new-post {
+  height: 8%;
+  width: 60%;
+  margin: auto;
+  margin-top: 5vh;
+  border: 5px solid #881ee4;
+  padding: 4rem;
+  padding-left: 10rem;
+  padding-right: 10rem;
+  border-radius: 8px;
+}
+.post-container {
+  width: 60%;
+  margin: auto;
+  margin-top: 3vh;
+  margin-bottom: 100vh;
+  border: 3px solid #85e21f;
+  border-radius: 8px;
+  padding: 5rem;
+  padding-left: 10rem;
+  padding-right: 10rem;
+}
 </style>
