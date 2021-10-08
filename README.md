@@ -23,7 +23,7 @@ To use our app, sign up with your name, email, and tip jar (either with CashApp,
 
 <div align="center">
   <h3>Tech Stack</h3>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg" width="130" height="130" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" width="130" height="130" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://miro.medium.com/max/438/1*0G5zu7CnXdMT9pGbYUTQLQ.png" width="230" height="130" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" width="130" height="130" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://global-uploads.webflow.com/5e8a043bfbc2c035b4d8e5b5/607832a2adf8de14cba92dcc_aws-s3.svg" width="130" height="130" />
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg" width="130" height="130" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" width="130" height="130" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://miro.medium.com/max/438/1*0G5zu7CnXdMT9pGbYUTQLQ.png" width="230" height="130" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" width="130" height="130" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://global-uploads.webflow.com/5e8a043bfbc2c035b4d8e5b5/607832a2adf8de14cba92dcc_aws-s3.svg" width="130" height="130" />
 </div>
 
 This app is built on a Vue.js front-end, connected to a RESTful Flask API from Python. Data is relationally stored in a PostgreSQL Database, along with images uploaded to an Amazon Web Service S3 image bucket.
