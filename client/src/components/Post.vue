@@ -4,7 +4,7 @@
     <div class="content">
       <h2>{{ postDetails.content }}</h2>
       <h4>{{ postDetails.claps }} claps</h4>
-      <h4 v-if="postDetails.user.name">by {{ postDetails.user.name }}</h4>
+      <!-- <h4 v-if="postDetails.user.name">by {{ postDetails.user.name }}</h4> -->
     </div>
     <button class="delete" @click="deletePost">Delete</button>
     <button class="clap" @click="clapPost">clap</button>
