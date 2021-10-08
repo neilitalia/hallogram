@@ -2,7 +2,13 @@
   <div>
     <h1>Create a new post</h1>
     <form v-on:submit.prevent="sendPost">
-      <input v-model="costume" type="text" placeholder="costume" />
+      <input type="text" placeholder="costume image" accept="image/*" />
+      <input
+        type="file"
+        placeholder="costume image"
+        @change="handleFileChange"
+      />
+      <button @click="handleFileSend">Upload File</button>
       <textarea
         v-model="content"
         name="content"
@@ -24,6 +30,7 @@ export default {
   data: () => ({
     content: "",
     costume: null,
+    costumeImage: null,
     user_id: 1,
   }),
   methods: {
@@ -42,6 +49,10 @@ export default {
         }
       }
     },
+    handleFileChange(e) {
+      this.costumeImage = e.target.files[0];
+    },
+    handleFileSend() {},
   },
 };
 </script>

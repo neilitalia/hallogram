@@ -24,5 +24,7 @@ api.add_resource(post.Posts, '/api/posts')
 api.add_resource(post.PostDetail, '/api/posts/<int:post_id>')
 api.add_resource(post.PostActions, '/api/posts/clap/<int:post_id>')
 
+api.add_resource(post.PostImage, '/api/posts/image')
+
 if __name__ == '__main__':
     app.run(debug=True)
