@@ -14,7 +14,7 @@
         accept="image/*"
         @change="handleFileChange"
       />
-      <button @click="handleFileSend">Upload File</button>
+      <button class="upload" @click="handleFileSend">Upload File</button>
     </div>
     <textarea
       v-model="content"
@@ -25,7 +25,7 @@
       maxlength="256"
     />
     <p>{{ 256 - content.length }}/256</p>
-    <button @click="sendPost" :disabled="!content || !costume">Submit</button>
+    <button class="submit" @click="sendPost" :disabled="!content || !costume">Submit</button>
   </div>
 </template>
 
@@ -80,6 +80,8 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+
 div.NewPost {
   display: flex;
   flex-direction: column;
@@ -88,5 +90,20 @@ div.file-upload {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+.submit, .upload {
+ background-color:#F75F1C;
+ color: black;
+ font-family: 'Creepster', cursive;
+}
+
+.NewPost{
+  background-image: url("https://cdn.pixabay.com/photo/2019/07/15/07/01/halloween-background-4338710__480.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  font-family: 'Creepster', cursive;
+  text-align: center;
+  color: #FF9A00;
+
 }
 </style>
